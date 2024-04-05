@@ -19,7 +19,7 @@ Pull this package in through Composer.
 
     {
         'require': {
-            'ixudra/toggl': '2.*'
+            'ixudra/toggl': '1.*'
         }
     }
 

@@ -12,7 +12,7 @@ trait ClientTrait {
      */
     public function clients()
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/clients' );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/clients' );
     }
 
     /**
@@ -23,12 +23,9 @@ trait ClientTrait {
      */
     public function createClient(array $data = array())
     {
-        $data[ 'wid' ] = $this->workspaceId;
-        $requestData = array(
-            'client'        => $data,
-        );
+        $data[ 'wid' ] = (int)$this->workspaceId;
 
-        return $this->sendPostMessage( $this->baseUrl .'/api/v8/clients', $requestData );
+        return $this->sendPostMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/clients', $data );
     }
 
     /**
@@ -39,7 +36,7 @@ trait ClientTrait {
      */
     public function client($id)
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/clients/'. $id );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/clients/'. $id );
     }
 
     /**
@@ -51,11 +48,9 @@ trait ClientTrait {
      */
     public function updateClient($id, array $data = array())
     {
-        $requestData = array(
-            'client'        => $data,
-        );
+        $data[ 'wid' ] = (int)$this->workspaceId;
 
-        return $this->sendPutMessage( $this->baseUrl .'/api/v8/clients/'. $id, $requestData );
+        return $this->sendPutMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/clients/'. $id, $data );
     }
 
     /**
@@ -66,7 +61,7 @@ trait ClientTrait {
      */
     public function deleteClient($id)
     {
-        return $this->sendDeleteMessage( $this->baseUrl .'/api/v8/clients/'. $id );
+        return $this->sendDeleteMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/clients/'. $id );
     }
 
     /**

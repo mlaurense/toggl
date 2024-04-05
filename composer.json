@@ -35,7 +35,7 @@
                 "Ixudra\\Toggl\\TogglServiceProvider"
             ],
             "aliases": {
-                "IxdTogglPckg": "Ixudra\\Toggl\\Facades\\Toggl"
+                "Toggl": "Ixudra\\Toggl\\Facades\\Toggl"
             }
         }
     }

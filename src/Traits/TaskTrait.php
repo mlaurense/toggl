@@ -13,12 +13,9 @@ trait TaskTrait {
      */
     public function createTask(array $data = array())
     {
-        $data[ 'wid' ] = $this->workspaceId;
-        $requestData = array(
-            'task'          => $data,
-        );
+        $projectId = $data['project_id'];
 
-        return $this->sendPostMessage( $this->baseUrl .'/api/v8/tasks', $requestData );
+        return $this->sendPostMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'.$projectId.'/tasks', $data );
     }
 
     /**
@@ -29,7 +26,7 @@ trait TaskTrait {
      */
     public function task($id)
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/tasks/'. $id );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'.$projectId.'/tasks/'. $id );
     }
 
     /**
@@ -41,11 +38,10 @@ trait TaskTrait {
      */
     public function updateTask($id, array $data = array())
     {
-        $requestData = array(
-            'task'          => $data,
-        );
+        $data[ 'workspace_id' ] = (int)$this->workspaceId;
+        $projectId = $data['project_id'];
 
-        return $this->sendPutMessage( $this->baseUrl .'/api/v8/tasks/'. $id, $requestData );
+        return $this->sendPutMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'.$projectId.'/tasks/'. $id, $data );
     }
 
     /**
@@ -56,7 +52,7 @@ trait TaskTrait {
      */
     public function deleteTask($id)
     {
-        return $this->sendDeleteMessage( $this->baseUrl .'/api/v8/tasks/'. $id );
+        return $this->sendDeleteMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'.$projectId.'tasks/'. $id );
     }
 
 }

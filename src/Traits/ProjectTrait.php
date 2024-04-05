@@ -12,7 +12,7 @@ trait ProjectTrait {
      */
     public function projects()
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/projects' );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects' );
     }
 
     /**
@@ -23,12 +23,7 @@ trait ProjectTrait {
      */
     public function createProject(array $data = array())
     {
-        $data[ 'wid' ] = $this->workspaceId;
-        $requestData = array(
-            'project'        => $data,
-        );
-
-        return $this->sendPostMessage( $this->baseUrl .'/api/v8/projects', $requestData );
+        return $this->sendPostMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects', $data );
     }
 
     /**
@@ -39,7 +34,7 @@ trait ProjectTrait {
      */
     public function project($id)
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/projects/'. $id );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'. $id );
     }
 
     /**
@@ -51,11 +46,7 @@ trait ProjectTrait {
      */
     public function updateProject($id, array $data = array())
     {
-        $requestData = array(
-            'project'        => $data,
-        );
-
-        return $this->sendPutMessage( $this->baseUrl .'/api/v8/projects/'. $id, $requestData );
+        return $this->sendPutMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'. $id, $data );
     }
 
     /**
@@ -66,7 +57,7 @@ trait ProjectTrait {
      */
     public function deleteProject($id)
     {
-        return $this->sendDeleteMessage( $this->baseUrl .'/api/v8/projects/'. $id );
+        return $this->sendDeleteMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'. $id );
     }
 
     /**
@@ -78,7 +69,7 @@ trait ProjectTrait {
      */
     public function projectUsers($id, array $data = array())
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/projects/'. $id .'/project_users', $data );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'. $id .'/project_users', $data );
     }
 
     /**
@@ -90,7 +81,7 @@ trait ProjectTrait {
      */
     public function projectTasks($id, array $data = array())
     {
-        return $this->sendGetMessage( $this->baseUrl .'/api/v8/projects/'. $id .'/tasks', $data );
+        return $this->sendGetMessage( $this->baseUrl .'/api/v9/workspaces/'.$this->workspaceId.'/projects/'. $id .'/tasks', $data );
     }
 
 }
